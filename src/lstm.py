@@ -17,12 +17,14 @@ class LSTM(object):
                 dropout          = 0.3,
                 return_sequences = True
             ),
-            #L(200, return_sequences=True),
-            #L(100),
+            L(
+                200, 
+                return_sequences = True
+            ),
             Dense(1)
         ])
-        #opt = Adam(lr=1.0e-3)
-        self.__model.compile(loss='mse', optimizer='adam')
+        opt = Adam(lr=1.0e-3)
+        self.__model.compile(loss='mse', optimizer=opt)
 
     def __create_lstm_dataset(self, dataset):
         x, y = [], []
