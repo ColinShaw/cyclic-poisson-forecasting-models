@@ -4,7 +4,7 @@ import numpy
 
 class ARIMA(object):
 
-    def __init__(self, order=(1,1,0), look_back=48):
+    def __init__(self, order=(2,1,0), look_back=72):
         self.__order = order
         self.__look_back = look_back
 
