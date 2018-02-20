@@ -7,24 +7,21 @@ from keras.optimizers import Adam
 
 class LSTM(object):
 
-    def __init__(self, units=200, look_back=48):
+    def __init__(self, units=400, look_back=72):
         self.__scaler = MinMaxScaler(feature_range=(0,1))
         self.__look_back = look_back
         self.__model = Sequential([
             L(
-                units, 
-                input_shape      = (1,look_back), 
-                dropout          = 0.3,
-                return_sequences = True
-            ),
-            L(
-                200, 
-                return_sequences = True
+                units,  
+                input_shape      = (1,look_back),
+                return_sequences = True,
             ),
             Dense(1)
         ])
-        opt = Adam(lr=1.0e-3)
-        self.__model.compile(loss='mse', optimizer=opt)
+        self.__model.compile(
+            loss      = 'mse', 
+            optimizer = Adam(lr=1.0e-3)
+        )
 
     def __create_lstm_dataset(self, dataset):
         x, y = [], []
