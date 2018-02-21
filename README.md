@@ -92,3 +92,10 @@ actually Gaussian.  If this hypothesis is true, it is reasonable
 to anticipate better results.  Of course the only way to know is 
 to collect real data and repeat the experiment.
 
+Another mechanism for improvement might be adding time series 
+components to the ARIMA model.  Particularly for constant underlying
+changes in the Poisson process, these could be modeled by a 
+Fourier series.  Despite the underlying process being assumed to
+change, the Fourier terms might help normalize the data and remove
+some of the artifacts from the residual.
+
