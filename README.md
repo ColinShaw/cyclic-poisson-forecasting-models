@@ -92,6 +92,12 @@ actually Gaussian.  If this hypothesis is true, it is reasonable
 to anticipate better results.  Of course the only way to know is 
 to collect real data and repeat the experiment.
 
+Even by normalizing the Poisson distribution by the mean didn't 
+affect the quality of the residual.  The seasonal undulations were
+removed, but the variability was nearly identical in terms of the
+qualitative appearance of a qq-plot.  Perhaps this is expected since
+the variance of the distribution was not normalized, only the mean.
+
 Another mechanism for improvement might be adding time series 
 components to the ARIMA model.  Particularly for constant underlying
 changes in the Poisson process, these could be modeled by a 

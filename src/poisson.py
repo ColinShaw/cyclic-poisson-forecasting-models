@@ -11,8 +11,12 @@ class Poisson(object):
             profile = self.__profile1
         else:
             profile = self.__profile2
-        result = []
+        result, normed = [], []
         for i in range(num):
-            result += [np.random.poisson(j) for j in profile]
-        return np.array(result).astype(np.float32)
+            new = [np.random.poisson(j) for j in profile]
+            result += new
+            new = np.subtract(new, profile).tolist()
+            normed += new
+            
+        return np.array(result).astype(np.float32), np.array(normed).astype(np.float32)
 
