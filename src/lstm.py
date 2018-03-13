@@ -1,13 +1,13 @@
 import numpy 
 from sklearn.preprocessing import MinMaxScaler
 from keras.models import Sequential
-from keras.layers import LSTM as L, Dense
+from keras.layers import LSTM as L, Dense, TimeDistributed
 from keras.optimizers import Adam
 
 
 class LSTM(object):
 
-    def __init__(self, units=400, look_back=72):
+    def __init__(self, units=500, look_back=72):
         self.__scaler = MinMaxScaler(feature_range=(0,1))
         self.__look_back = look_back
         self.__model = Sequential([
@@ -16,11 +16,13 @@ class LSTM(object):
                 input_shape      = (1,look_back),
                 return_sequences = True,
             ),
+            Dense(units),
+            Dense(units/2),
             Dense(1)
         ])
         self.__model.compile(
             loss      = 'mse', 
-            optimizer = Adam(lr=1.0e-3)
+            optimizer = Adam(lr=1.0e-5)
         )
 
     def __create_lstm_dataset(self, dataset):
